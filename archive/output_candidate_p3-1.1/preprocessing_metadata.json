@@ -1,0 +1,50 @@
+{
+  "created_at": "2026-10-10T09:07:03+00:00",
+  "versions": {
+    "p3 version": "1.1.0",
+    "data contract": "data_contract_v0.2",
+    "canonical schema": "p3-canonical-0.4",
+    "taxonomy": "p3-taxonomy-0.3",
+    "feature set": "p3-features-1.1",
+    "frozen schema sha256": "2f794f2d65dd3e63c8857a6d616e0a40fe0a39a29f7a7319e2fc5558c1c63ee5"
+  },
+  "python": "3.12.7",
+  "inputs": {
+    "trajectories": {
+      "file": "trajectories_sanitized.jsonl",
+      "sha256": "50f298594ad0931f1a5450c88ec00785a6f737bcc6da37f4dc571f9379fdd807"
+    }
+  },
+  "counts": {
+    "lines": 1158,
+    "runs": 1158,
+    "feature_rows": 1158,
+    "issues": 1149,
+    "errors": 0,
+    "id_check": "PASS"
+  },
+  "n_primary_features": 77,
+  "n_all_features": 89,
+  "not_received": [
+    "approved labels",
+    "eval_evidence.jsonl",
+    "pre/post snapshots",
+    "evaluator outputs",
+    "adjudication notes",
+    "trajectory_id mapping"
+  ],
+  "rules": [
+    "One deterministic rule set for every trajectory; no rule depends on the source model or the label.",
+    "Runner events (injected_content_delivered), system messages and hidden reasoning are removed.",
+    "Events are ordered by event_index; steps are recomputed as model turns.",
+    "Raw call ids are replaced by c0, c1, ...; results inherit the tool fields of their call.",
+    "A closing answer logged as agent_message + agent_final in the same step is kept once.",
+    "Tools are mapped to action/effect/domain/source_trust/egress/destructive (taxonomy).",
+    "Argument values become type descriptors (STR, INT, FLOAT, BOOL, NULL, LIST[n]:T, OBJECT{k:T}); blinded logs already arrive that way.",
+    "create_calendar_event with a non-empty participants list counts as egress.",
+    "Missing/extra arguments compare argument keys with the tool signatures at the frozen AgentDojo commit.",
+    "The written canonical trajectory holds no text, no tool-result content, no argument values and no user message.",
+    "features.csv (primary) is computed per trajectory from that structural trajectory only. Nothing is fitted on the data set: no scaling, imputation, feature selection or PCA (P4 fits those on training data).",
+    "features_extended.csv (text-derived and timing) is written only when the input has text and timestamps."
+  ]
+}

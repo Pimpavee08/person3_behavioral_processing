@@ -1,0 +1,59 @@
+{
+  "created_at": "2026-10-03T06:40:20+00:00",
+  "versions": {
+    "p3 version": "1.0.0",
+    "data contract": "data_contract_v0.2",
+    "canonical schema": "p3-canonical-0.3",
+    "taxonomy": "p3-taxonomy-0.2",
+    "feature set": "p3-features-1.0",
+    "frozen schema sha256": "855628e7ea1c5cf380019c38fe04dcd5491945c03e2517cbb218ed4758923779"
+  },
+  "python": "3.12.7",
+  "inputs": {
+    "raw_runs": {
+      "file": "raw_runs.jsonl",
+      "sha256": "3fee8d7044373c532b5cfc5f332ec53822e0d5b07bc84167cb112c4162f87786"
+    },
+    "manifest": {
+      "file": "pilot_manifest_v0.1.csv",
+      "sha256": "96515958bf2b85c22766d342d430bbc892d9aaed886d71843407230b069223ee"
+    },
+    "run_metadata": {
+      "file": "run_metadata.txt",
+      "sha256": "819a1fe851f7ad3e674011dcd79bdb7f9b24ee38db106a9de5d38a42ef9e30ca"
+    }
+  },
+  "counts": {
+    "lines": 54,
+    "runs": 54,
+    "feature_rows": 54,
+    "issues": 133,
+    "errors": 0
+  },
+  "n_primary_features": 72,
+  "n_all_features": 84,
+  "received_from_p1": [
+    "data_contract_v0.2.md",
+    "experiment_protocol_v0.2.md",
+    "pilot_manifest_v0.1.csv (user_prompt fallback and scenario check only)"
+  ],
+  "not_received": [
+    "approved labels",
+    "eval_evidence.jsonl",
+    "pre/post snapshots",
+    "evaluator outputs",
+    "adjudication notes"
+  ],
+  "rules": [
+    "Runner events (injected_content_delivered), system messages and hidden reasoning are removed.",
+    "Events are ordered by event_index; steps are recomputed as model turns.",
+    "Raw call ids are replaced by c0, c1, ...; results inherit the tool fields of their call.",
+    "A closing answer logged as agent_message + agent_final with the same text is kept once.",
+    "Tools are mapped to action/effect/domain/source_trust/egress/destructive (taxonomy).",
+    "create_calendar_event with non-empty participants counts as egress (emptiness only, values unread).",
+    "The written canonical trajectory holds no raw text and no argument values: arguments become arg_count/arg_types/n_missing_args/n_extra_args/args_ref, results become result_type, messages become has_text.",
+    "Missing/extra arguments compare argument keys with the tool signatures at the frozen AgentDojo commit.",
+    "features.csv (primary) is computed from that structural trajectory only.",
+    "features_extended.csv adds text-derived and timing features; not primary detector input."
+  ]
+}

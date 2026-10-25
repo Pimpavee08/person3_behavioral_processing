@@ -1,0 +1,83 @@
+# Primary feature summary
+
+1158 trajectories. Descriptive only; nothing here is fitted or used to transform features.
+
+Constant across all trajectories: `n_calls_without_result`, `n_unparseable_args`
+
+| feature | mean | min | max | share non-zero | missing |
+|---|---:|---:|---:|---:|---:|
+| `n_tool_calls` | 3.865 | 0 | 19 | 0.984 | 0 |
+| `n_tool_results` | 3.865 | 0 | 19 | 0.984 | 0 |
+| `n_unique_tools` | 3.035 | 0 | 11 | 0.984 | 0 |
+| `n_unmapped_tool_calls` | 0.011 | 0 | 3 | 0.007 | 0 |
+| `trajectory_length` | 8.795 | 1 | 39 | 1.000 | 0 |
+| `n_read` | 2.955 | 0 | 19 | 0.981 | 0 |
+| `n_write` | 0.910 | 0 | 12 | 0.593 | 0 |
+| `n_egress` | 0.700 | 0 | 12 | 0.453 | 0 |
+| `n_destructive` | 0.032 | 0 | 4 | 0.022 | 0 |
+| `frac_write` | 0.239 | 0 | 1 | 0.593 | 0 |
+| `frac_egress` | 0.172 | 0 | 0.9 | 0.453 | 0 |
+| `n_act_retrieve` | 1.718 | 0 | 13 | 0.637 | 0 |
+| `n_act_list` | 0.795 | 0 | 6 | 0.515 | 0 |
+| `n_act_search` | 0.442 | 0 | 13 | 0.269 | 0 |
+| `n_act_create` | 0.169 | 0 | 4 | 0.165 | 0 |
+| `n_act_update` | 0.082 | 0 | 3 | 0.079 | 0 |
+| `n_act_delete` | 0.024 | 0 | 4 | 0.017 | 0 |
+| `n_act_send_message` | 0.306 | 0 | 12 | 0.184 | 0 |
+| `n_act_transfer_value` | 0.076 | 0 | 3 | 0.069 | 0 |
+| `n_act_publish` | 0.012 | 0 | 1 | 0.012 | 0 |
+| `n_act_reserve` | 0.006 | 0 | 3 | 0.003 | 0 |
+| `n_act_share` | 0.035 | 0 | 2 | 0.023 | 0 |
+| `n_act_admin` | 0.199 | 0 | 7 | 0.136 | 0 |
+| `n_domains` | 1.405 | 0 | 4 | 0.984 | 0 |
+| `n_domain_switches` | 0.572 | 0 | 6 | 0.390 | 0 |
+| `n_write_domains` | 0.622 | 0 | 2 | 0.593 | 0 |
+| `n_writes_new_domain` | 0.189 | 0 | 2 | 0.186 | 0 |
+| `action_entropy` | 0.897 | -0 | 2.32193 | 0.805 | 0 |
+| `has_write` | 0.593 | 0 | 1 | 0.593 | 0 |
+| `first_write_pos` | 0.747 | 0 | 1 | 0.979 | 0 |
+| `n_reads_after_first_write` | 0.100 | 0 | 6 | 0.054 | 0 |
+| `n_write_bursts` | 0.646 | 0 | 4 | 0.593 | 0 |
+| `max_read_streak` | 2.883 | 0 | 19 | 0.981 | 0 |
+| `n_repeated_call_shapes` | 0.755 | 0 | 15 | 0.316 | 0 |
+| `n_tool_revisits` | 0.119 | 0 | 6 | 0.070 | 0 |
+| `max_same_tool_run` | 1.484 | 0 | 8 | 0.984 | 0 |
+| `trans_RR` | 0.466 | 0 | 1 | 0.622 | 0 |
+| `trans_RW` | 0.110 | 0 | 1 | 0.181 | 0 |
+| `trans_RE` | 0.222 | 0 | 1 | 0.415 | 0 |
+| `trans_WR` | 0.003 | 0 | 0.25 | 0.014 | 0 |
+| `trans_WW` | 0.002 | 0 | 0.75 | 0.007 | 0 |
+| `trans_WE` | 0.011 | 0 | 0.5 | 0.043 | 0 |
+| `trans_ER` | 0.009 | 0 | 1 | 0.041 | 0 |
+| `trans_EW` | 0.001 | 0 | 0.333333 | 0.004 | 0 |
+| `trans_EE` | 0.034 | 0 | 0.8 | 0.107 | 0 |
+| `n_freetext_reads` | 1.590 | 0 | 9 | 0.938 | 0 |
+| `n_writes_after_freetext` | 0.828 | 0 | 12 | 0.561 | 0 |
+| `n_egress_after_freetext` | 0.630 | 0 | 12 | 0.421 | 0 |
+| `n_destructive_after_freetext` | 0.031 | 0 | 4 | 0.021 | 0 |
+| `frac_writes_after_freetext` | 0.559 | 0 | 1 | 0.561 | 0 |
+| `n_calls_after_last_freetext` | 1.268 | 0 | 12 | 0.681 | 0 |
+| `n_tool_errors` | 0.186 | 0 | 10 | 0.115 | 0 |
+| `frac_tool_errors` | 0.039 | 0 | 1 | 0.115 | 0 |
+| `n_retry_after_error` | 0.100 | 0 | 6 | 0.082 | 0 |
+| `n_error_valueerror` | 0.161 | 0 | 10 | 0.100 | 0 |
+| `n_error_validationerror` | 0.011 | 0 | 1 | 0.011 | 0 |
+| `n_error_keyerror` | 0.002 | 0 | 1 | 0.002 | 0 |
+| `n_error_other` | 0.011 | 0 | 3 | 0.007 | 0 |
+| `mean_args_per_call` | 1.344 | 0 | 4 | 0.947 | 0 |
+| `max_args_per_call` | 2.153 | 0 | 7 | 0.947 | 0 |
+| `n_calls_without_args` | 0.331 | 0 | 3 | 0.315 | 0 |
+| `n_calls_missing_required` | 0.003 | 0 | 1 | 0.003 | 0 |
+| `n_calls_extra_args` | 0.008 | 0 | 3 | 0.006 | 0 |
+| `frac_arg_str` | 0.720 | 0 | 1 | 0.906 | 0 |
+| `frac_arg_number` | 0.079 | 0 | 1 | 0.133 | 0 |
+| `frac_arg_bool` | 0.003 | 0 | 0.333333 | 0.022 | 0 |
+| `frac_arg_collection` | 0.143 | 0 | 0.888889 | 0.329 | 0 |
+| `frac_arg_empty` | 0.002 | 0 | 0.333333 | 0.012 | 0 |
+| `ended_with_final` | 0.997 | 0 | 1 | 0.997 | 0 |
+| `final_output_present` | 0.978 | 0 | 1 | 0.978 | 0 |
+| `n_steps` | 4.229 | 1 | 15 | 1.000 | 0 |
+| `max_calls_per_step` | 1.361 | 0 | 6 | 0.984 | 0 |
+| `mean_calls_per_step` | 1.196 | 0 | 6 | 0.984 | 0 |
+| `n_agent_messages` | 0.068 | 0 | 2 | 0.065 | 0 |
+| `n_steps_message_and_call` | 0.068 | 0 | 2 | 0.065 | 0 |

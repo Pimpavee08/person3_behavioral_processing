@@ -1,0 +1,13 @@
+{
+  "lines_read": 1158,
+  "unreadable_lines": 0,
+  "records_without_valid_id": 0,
+  "unique_ids": 1158,
+  "duplicate_ids": [],
+  "expected_ids": 1158,
+  "feature_rows": 1158,
+  "feature_ids_unique": true,
+  "feature_ids_equal_input_ids": true,
+  "ids_without_feature_row": [],
+  "PASS": true
+}

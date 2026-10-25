@@ -1,0 +1,70 @@
+feature,group,caution,description
+n_tool_calls,volume,,Tool calls issued by the agent.
+n_unique_tools,volume,,Distinct tools called.
+n_unmapped_tool_calls,volume,,Calls to tools outside the taxonomy (e.g. hallucinated names).
+total_result_chars,volume,text_derived,Characters returned by all tool results.
+mean_result_chars,volume,text_derived,Mean characters per tool result.
+n_read,action_mix,,Read-effect tool calls.
+n_write,action_mix,,Write-effect (state-changing) tool calls.
+n_egress,action_mix,,Calls that send data/value to another party or grant access.
+n_destructive,action_mix,,Calls that delete or revoke.
+frac_write,action_mix,,n_write / n_tool_calls.
+frac_egress,action_mix,,n_egress / n_tool_calls.
+n_act_retrieve,action_mix,,Tool calls with canonical action 'retrieve'.
+n_act_list,action_mix,,Tool calls with canonical action 'list'.
+n_act_search,action_mix,,Tool calls with canonical action 'search'.
+n_act_create,action_mix,,Tool calls with canonical action 'create'.
+n_act_update,action_mix,,Tool calls with canonical action 'update'.
+n_act_delete,action_mix,,Tool calls with canonical action 'delete'.
+n_act_send_message,action_mix,,Tool calls with canonical action 'send_message'.
+n_act_transfer_value,action_mix,,Tool calls with canonical action 'transfer_value'.
+n_act_publish,action_mix,,Tool calls with canonical action 'publish'.
+n_act_reserve,action_mix,,Tool calls with canonical action 'reserve'.
+n_act_share,action_mix,,Tool calls with canonical action 'share'.
+n_act_admin,action_mix,,Tool calls with canonical action 'admin'.
+n_domains,action_mix,,Distinct resource domains touched.
+n_domain_switches,action_mix,,Consecutive calls whose domains differ.
+n_write_domains,action_mix,,Distinct domains touched by write calls.
+n_writes_new_domain,action_mix,,Write calls in a domain no earlier call touched.
+action_entropy,action_mix,,Shannon entropy (bits) of the canonical-action distribution.
+has_write,sequence,,1 if any write call.
+first_write_pos,sequence,,Index of first write / n_tool_calls; 1.0 when there is no write.
+n_reads_after_first_write,sequence,,Read calls issued after the first write.
+n_write_bursts,sequence,,Maximal runs of consecutive write calls.
+max_read_streak,sequence,,Longest run of consecutive read calls.
+n_repeated_calls,sequence,,Calls identical (tool + arguments) to an earlier call.
+trans_RR,sequence,,"Share of consecutive call pairs going R->R (R=read, W=internal write, E=egress write)."
+trans_RW,sequence,,"Share of consecutive call pairs going R->W (R=read, W=internal write, E=egress write)."
+trans_RE,sequence,,"Share of consecutive call pairs going R->E (R=read, W=internal write, E=egress write)."
+trans_WR,sequence,,"Share of consecutive call pairs going W->R (R=read, W=internal write, E=egress write)."
+trans_WW,sequence,,"Share of consecutive call pairs going W->W (R=read, W=internal write, E=egress write)."
+trans_WE,sequence,,"Share of consecutive call pairs going W->E (R=read, W=internal write, E=egress write)."
+trans_ER,sequence,,"Share of consecutive call pairs going E->R (R=read, W=internal write, E=egress write)."
+trans_EW,sequence,,"Share of consecutive call pairs going E->W (R=read, W=internal write, E=egress write)."
+trans_EE,sequence,,"Share of consecutive call pairs going E->E (R=read, W=internal write, E=egress write)."
+n_freetext_reads,exposure_structure,,Reads returning third-party free text.
+n_writes_after_freetext,exposure_structure,,Writes in a later step than the first free-text read.
+n_egress_after_freetext,exposure_structure,,Egress calls in a later step than the first free-text read.
+n_destructive_after_freetext,exposure_structure,,Destructive calls in a later step than the first free-text read.
+frac_writes_after_freetext,exposure_structure,,n_writes_after_freetext / n_write.
+n_calls_after_last_freetext,exposure_structure,,Calls in a later step than the last free-text read.
+n_tool_errors,errors,,Tool results that are errors.
+frac_tool_errors,errors,,n_tool_errors / n_tool_calls.
+n_retry_after_error,errors,,Calls to the same tool directly after its errored call.
+n_calls_without_result,errors,,Calls with no logged result.
+n_write_arg_atoms,provenance,text_derived,String argument values (>=4 chars) of write calls.
+frac_write_args_from_user,provenance,text_derived,Share of those values that appear in the user prompt.
+frac_write_args_from_tool,provenance,text_derived,Share that appear only in an earlier tool result.
+frac_write_args_from_freetext,provenance,text_derived,Share that appear only in an earlier free-text tool result.
+frac_write_args_novel,provenance,text_derived,Share that appear in neither (composed by the agent).
+n_egress_calls_freetext_args,provenance,text_derived,Egress calls with an argument value traceable only to a free-text tool result.
+ended_with_final,termination,,1 if the trajectory ends with a final agent answer.
+n_steps,shape,,Model turns (consecutive agent events count as one).
+max_calls_per_step,shape,,Most tool calls issued in one turn.
+mean_calls_per_step,shape,,Mean tool calls per turn that has calls.
+n_agent_text_msgs,shape,,"Agent text messages, including preambles before tool calls."
+n_steps_text_and_call,shape,,Turns containing both agent text and a tool call.
+final_text_len,shape,text_derived,Characters in the final answer.
+mean_agent_text_len,shape,text_derived,Mean characters per agent text message.
+duration_s,shape,timing,Seconds from first to last timestamped event.
+mean_agent_latency_s,shape,timing,Mean seconds between an agent event and the event before it.

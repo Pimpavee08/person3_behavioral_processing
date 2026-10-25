@@ -1,0 +1,1626 @@
+{
+  "status": "frozen",
+  "frozen_at": "2026-10-03",
+  "frozen_by": "Person 3",
+  "label_isolation": "Defined and frozen without P1 approved labels, eval_evidence, environment snapshots, evaluator outputs or adjudication notes.",
+  "change_policy": "Do not edit. Any change to features, taxonomy, signatures or structural keys needs a new feature_set_version and a notice to the team.",
+  "primary_input": "features.csv holds exactly primary_features, in this order, after run_id.",
+  "schema_sha256": "855628e7ea1c5cf380019c38fe04dcd5491945c03e2517cbb218ed4758923779",
+  "feature_set_version": "p3-features-1.0",
+  "canonical_schema_version": "p3-canonical-0.3",
+  "taxonomy_version": "p3-taxonomy-0.2",
+  "tool_signature_source": "agentdojo@a75aba7631d3ca5fb7ab938965c97ead2f9ff84b",
+  "primary_features": [
+    {
+      "feature": "n_tool_calls",
+      "group": "volume",
+      "dtype": "int",
+      "description": "Tool calls issued by the agent."
+    },
+    {
+      "feature": "n_unique_tools",
+      "group": "volume",
+      "dtype": "int",
+      "description": "Distinct tools called."
+    },
+    {
+      "feature": "n_unmapped_tool_calls",
+      "group": "volume",
+      "dtype": "int",
+      "description": "Calls to tools outside the taxonomy (e.g. hallucinated names)."
+    },
+    {
+      "feature": "trajectory_length",
+      "group": "volume",
+      "dtype": "int",
+      "description": "Events in the canonical trajectory (runner markers, system messages and reasoning already removed)."
+    },
+    {
+      "feature": "n_read",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Read-effect tool calls."
+    },
+    {
+      "feature": "n_write",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Write-effect (state-changing) tool calls."
+    },
+    {
+      "feature": "n_egress",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Calls that send data/value to another party or grant access."
+    },
+    {
+      "feature": "n_destructive",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Calls that delete or revoke."
+    },
+    {
+      "feature": "frac_write",
+      "group": "action_mix",
+      "dtype": "float",
+      "description": "n_write / n_tool_calls."
+    },
+    {
+      "feature": "frac_egress",
+      "group": "action_mix",
+      "dtype": "float",
+      "description": "n_egress / n_tool_calls."
+    },
+    {
+      "feature": "n_act_retrieve",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Tool calls with canonical action 'retrieve'."
+    },
+    {
+      "feature": "n_act_list",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Tool calls with canonical action 'list'."
+    },
+    {
+      "feature": "n_act_search",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Tool calls with canonical action 'search'."
+    },
+    {
+      "feature": "n_act_create",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Tool calls with canonical action 'create'."
+    },
+    {
+      "feature": "n_act_update",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Tool calls with canonical action 'update'."
+    },
+    {
+      "feature": "n_act_delete",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Tool calls with canonical action 'delete'."
+    },
+    {
+      "feature": "n_act_send_message",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Tool calls with canonical action 'send_message'."
+    },
+    {
+      "feature": "n_act_transfer_value",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Tool calls with canonical action 'transfer_value'."
+    },
+    {
+      "feature": "n_act_publish",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Tool calls with canonical action 'publish'."
+    },
+    {
+      "feature": "n_act_reserve",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Tool calls with canonical action 'reserve'."
+    },
+    {
+      "feature": "n_act_share",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Tool calls with canonical action 'share'."
+    },
+    {
+      "feature": "n_act_admin",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Tool calls with canonical action 'admin'."
+    },
+    {
+      "feature": "n_domains",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Distinct resource domains touched."
+    },
+    {
+      "feature": "n_domain_switches",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Consecutive calls whose domains differ."
+    },
+    {
+      "feature": "n_write_domains",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Distinct domains touched by write calls."
+    },
+    {
+      "feature": "n_writes_new_domain",
+      "group": "action_mix",
+      "dtype": "int",
+      "description": "Write calls in a domain no earlier call touched."
+    },
+    {
+      "feature": "action_entropy",
+      "group": "action_mix",
+      "dtype": "float",
+      "description": "Shannon entropy (bits) of the canonical-action distribution."
+    },
+    {
+      "feature": "has_write",
+      "group": "sequence",
+      "dtype": "int",
+      "description": "1 if any write call."
+    },
+    {
+      "feature": "first_write_pos",
+      "group": "sequence",
+      "dtype": "float",
+      "description": "Index of first write / n_tool_calls; 1.0 when there is no write."
+    },
+    {
+      "feature": "n_reads_after_first_write",
+      "group": "sequence",
+      "dtype": "int",
+      "description": "Read calls issued after the first write."
+    },
+    {
+      "feature": "n_write_bursts",
+      "group": "sequence",
+      "dtype": "int",
+      "description": "Maximal runs of consecutive write calls."
+    },
+    {
+      "feature": "max_read_streak",
+      "group": "sequence",
+      "dtype": "int",
+      "description": "Longest run of consecutive read calls."
+    },
+    {
+      "feature": "n_repeated_calls",
+      "group": "sequence",
+      "dtype": "int",
+      "description": "Calls with the same tool and identical arguments as an earlier call."
+    },
+    {
+      "feature": "n_tool_revisits",
+      "group": "sequence",
+      "dtype": "int",
+      "description": "Calls to a tool used earlier but not by the directly preceding call (loop back)."
+    },
+    {
+      "feature": "max_same_tool_run",
+      "group": "sequence",
+      "dtype": "int",
+      "description": "Longest run of consecutive calls to the same tool."
+    },
+    {
+      "feature": "trans_RR",
+      "group": "sequence",
+      "dtype": "float",
+      "description": "Share of consecutive call pairs going R->R (R=read, W=internal write, E=egress write)."
+    },
+    {
+      "feature": "trans_RW",
+      "group": "sequence",
+      "dtype": "float",
+      "description": "Share of consecutive call pairs going R->W (R=read, W=internal write, E=egress write)."
+    },
+    {
+      "feature": "trans_RE",
+      "group": "sequence",
+      "dtype": "float",
+      "description": "Share of consecutive call pairs going R->E (R=read, W=internal write, E=egress write)."
+    },
+    {
+      "feature": "trans_WR",
+      "group": "sequence",
+      "dtype": "float",
+      "description": "Share of consecutive call pairs going W->R (R=read, W=internal write, E=egress write)."
+    },
+    {
+      "feature": "trans_WW",
+      "group": "sequence",
+      "dtype": "float",
+      "description": "Share of consecutive call pairs going W->W (R=read, W=internal write, E=egress write)."
+    },
+    {
+      "feature": "trans_WE",
+      "group": "sequence",
+      "dtype": "float",
+      "description": "Share of consecutive call pairs going W->E (R=read, W=internal write, E=egress write)."
+    },
+    {
+      "feature": "trans_ER",
+      "group": "sequence",
+      "dtype": "float",
+      "description": "Share of consecutive call pairs going E->R (R=read, W=internal write, E=egress write)."
+    },
+    {
+      "feature": "trans_EW",
+      "group": "sequence",
+      "dtype": "float",
+      "description": "Share of consecutive call pairs going E->W (R=read, W=internal write, E=egress write)."
+    },
+    {
+      "feature": "trans_EE",
+      "group": "sequence",
+      "dtype": "float",
+      "description": "Share of consecutive call pairs going E->E (R=read, W=internal write, E=egress write)."
+    },
+    {
+      "feature": "n_freetext_reads",
+      "group": "exposure_structure",
+      "dtype": "int",
+      "description": "Reads returning third-party free text."
+    },
+    {
+      "feature": "n_writes_after_freetext",
+      "group": "exposure_structure",
+      "dtype": "int",
+      "description": "Writes in a later step than the first free-text read."
+    },
+    {
+      "feature": "n_egress_after_freetext",
+      "group": "exposure_structure",
+      "dtype": "int",
+      "description": "Egress calls in a later step than the first free-text read."
+    },
+    {
+      "feature": "n_destructive_after_freetext",
+      "group": "exposure_structure",
+      "dtype": "int",
+      "description": "Destructive calls in a later step than the first free-text read."
+    },
+    {
+      "feature": "frac_writes_after_freetext",
+      "group": "exposure_structure",
+      "dtype": "float",
+      "description": "n_writes_after_freetext / n_write."
+    },
+    {
+      "feature": "n_calls_after_last_freetext",
+      "group": "exposure_structure",
+      "dtype": "int",
+      "description": "Calls in a later step than the last free-text read."
+    },
+    {
+      "feature": "n_tool_errors",
+      "group": "errors",
+      "dtype": "int",
+      "description": "Tool results that are errors."
+    },
+    {
+      "feature": "frac_tool_errors",
+      "group": "errors",
+      "dtype": "float",
+      "description": "n_tool_errors / n_tool_calls."
+    },
+    {
+      "feature": "n_retry_after_error",
+      "group": "errors",
+      "dtype": "int",
+      "description": "Calls to the same tool directly after its errored call."
+    },
+    {
+      "feature": "n_calls_without_result",
+      "group": "errors",
+      "dtype": "int",
+      "description": "Calls with no logged result."
+    },
+    {
+      "feature": "n_empty_results",
+      "group": "errors",
+      "dtype": "int",
+      "description": "Successful tool results with no content."
+    },
+    {
+      "feature": "mean_args_per_call",
+      "group": "arguments",
+      "dtype": "float",
+      "description": "Mean number of arguments per parsed call."
+    },
+    {
+      "feature": "max_args_per_call",
+      "group": "arguments",
+      "dtype": "int",
+      "description": "Most arguments in one call."
+    },
+    {
+      "feature": "n_calls_without_args",
+      "group": "arguments",
+      "dtype": "int",
+      "description": "Calls with zero arguments."
+    },
+    {
+      "feature": "n_unparseable_args",
+      "group": "arguments",
+      "dtype": "int",
+      "description": "Calls whose arguments could not be parsed (malformed call)."
+    },
+    {
+      "feature": "n_calls_missing_required",
+      "group": "arguments",
+      "dtype": "int",
+      "description": "Calls missing a required argument of the tool signature."
+    },
+    {
+      "feature": "n_calls_extra_args",
+      "group": "arguments",
+      "dtype": "int",
+      "description": "Calls with an argument the tool signature does not define."
+    },
+    {
+      "feature": "frac_arg_str",
+      "group": "arguments",
+      "dtype": "float",
+      "description": "Share of argument values that are non-empty strings."
+    },
+    {
+      "feature": "frac_arg_number",
+      "group": "arguments",
+      "dtype": "float",
+      "description": "Share of argument values that are numbers."
+    },
+    {
+      "feature": "frac_arg_bool",
+      "group": "arguments",
+      "dtype": "float",
+      "description": "Share of argument values that are booleans."
+    },
+    {
+      "feature": "frac_arg_collection",
+      "group": "arguments",
+      "dtype": "float",
+      "description": "Share of argument values that are non-empty lists or objects."
+    },
+    {
+      "feature": "frac_arg_empty",
+      "group": "arguments",
+      "dtype": "float",
+      "description": "Share of argument values that are null or empty."
+    },
+    {
+      "feature": "ended_with_final",
+      "group": "termination",
+      "dtype": "int",
+      "description": "1 if the trajectory ends with a final agent answer."
+    },
+    {
+      "feature": "n_steps",
+      "group": "shape",
+      "dtype": "int",
+      "description": "Model turns (consecutive agent events count as one)."
+    },
+    {
+      "feature": "max_calls_per_step",
+      "group": "shape",
+      "dtype": "int",
+      "description": "Most tool calls issued in one turn."
+    },
+    {
+      "feature": "mean_calls_per_step",
+      "group": "shape",
+      "dtype": "float",
+      "description": "Mean tool calls per turn that has calls."
+    },
+    {
+      "feature": "n_agent_text_msgs",
+      "group": "shape",
+      "dtype": "int",
+      "description": "Agent messages that contain text, including preambles before tool calls."
+    },
+    {
+      "feature": "n_steps_text_and_call",
+      "group": "shape",
+      "dtype": "int",
+      "description": "Turns containing both agent text and a tool call."
+    }
+  ],
+  "secondary_features": [
+    {
+      "feature": "total_result_chars",
+      "group": "volume",
+      "caution": "text_derived",
+      "dtype": "int",
+      "description": "Characters returned by all tool results."
+    },
+    {
+      "feature": "mean_result_chars",
+      "group": "volume",
+      "caution": "text_derived",
+      "dtype": "float",
+      "description": "Mean characters per tool result."
+    },
+    {
+      "feature": "n_write_arg_atoms",
+      "group": "provenance",
+      "caution": "text_derived",
+      "dtype": "int",
+      "description": "String argument values (>=4 chars) of write calls."
+    },
+    {
+      "feature": "frac_write_args_from_user",
+      "group": "provenance",
+      "caution": "text_derived",
+      "dtype": "float",
+      "description": "Share of those values that appear in the user prompt."
+    },
+    {
+      "feature": "frac_write_args_from_tool",
+      "group": "provenance",
+      "caution": "text_derived",
+      "dtype": "float",
+      "description": "Share that appear only in an earlier tool result."
+    },
+    {
+      "feature": "frac_write_args_from_freetext",
+      "group": "provenance",
+      "caution": "text_derived",
+      "dtype": "float",
+      "description": "Share that appear only in an earlier free-text tool result."
+    },
+    {
+      "feature": "frac_write_args_novel",
+      "group": "provenance",
+      "caution": "text_derived",
+      "dtype": "float",
+      "description": "Share that appear in neither (composed by the agent)."
+    },
+    {
+      "feature": "n_egress_calls_freetext_args",
+      "group": "provenance",
+      "caution": "text_derived",
+      "dtype": "int",
+      "description": "Egress calls with an argument value traceable only to a free-text tool result."
+    },
+    {
+      "feature": "final_text_len",
+      "group": "shape",
+      "caution": "text_derived",
+      "dtype": "int",
+      "description": "Characters in the final answer."
+    },
+    {
+      "feature": "mean_agent_text_len",
+      "group": "shape",
+      "caution": "text_derived",
+      "dtype": "float",
+      "description": "Mean characters per agent text message."
+    },
+    {
+      "feature": "duration_s",
+      "group": "shape",
+      "caution": "timing",
+      "dtype": "float",
+      "description": "Seconds from first to last timestamped event."
+    },
+    {
+      "feature": "mean_agent_latency_s",
+      "group": "shape",
+      "caution": "timing",
+      "dtype": "float",
+      "description": "Mean seconds between an agent event and the event before it."
+    }
+  ],
+  "structural_event_keys": [
+    "idx",
+    "step",
+    "type",
+    "actor",
+    "call_ref",
+    "tool",
+    "action",
+    "effect",
+    "domain",
+    "source_trust",
+    "egress",
+    "destructive",
+    "tool_mapped",
+    "is_error",
+    "t_rel",
+    "arg_count",
+    "arg_types",
+    "n_missing_args",
+    "n_extra_args",
+    "args_ref",
+    "result_type",
+    "has_text"
+  ],
+  "taxonomy": {
+    "add_calendar_event_participants": {
+      "action": "update",
+      "effect": "write",
+      "domain": "calendar",
+      "source_trust": null,
+      "egress": true,
+      "destructive": false,
+      "mapped": true
+    },
+    "add_user_to_channel": {
+      "action": "admin",
+      "effect": "write",
+      "domain": "messaging",
+      "source_trust": null,
+      "egress": true,
+      "destructive": false,
+      "mapped": true
+    },
+    "append_to_file": {
+      "action": "update",
+      "effect": "write",
+      "domain": "file",
+      "source_trust": null,
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "cancel_calendar_event": {
+      "action": "delete",
+      "effect": "write",
+      "domain": "calendar",
+      "source_trust": null,
+      "egress": false,
+      "destructive": true,
+      "mapped": true
+    },
+    "check_restaurant_opening_hours": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "create_calendar_event": {
+      "action": "create",
+      "effect": "write",
+      "domain": "calendar",
+      "source_trust": null,
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "create_file": {
+      "action": "create",
+      "effect": "write",
+      "domain": "file",
+      "source_trust": null,
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "delete_email": {
+      "action": "delete",
+      "effect": "write",
+      "domain": "email",
+      "source_trust": null,
+      "egress": false,
+      "destructive": true,
+      "mapped": true
+    },
+    "delete_file": {
+      "action": "delete",
+      "effect": "write",
+      "domain": "file",
+      "source_trust": null,
+      "egress": false,
+      "destructive": true,
+      "mapped": true
+    },
+    "get_all_car_rental_companies_in_city": {
+      "action": "list",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_all_hotels_in_city": {
+      "action": "list",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_all_restaurants_in_city": {
+      "action": "list",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_balance": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "finance",
+      "source_trust": "own",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_car_fuel_options": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_car_price_per_day": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_car_rental_address": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_car_types_available": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_channels": {
+      "action": "list",
+      "effect": "read",
+      "domain": "messaging",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_contact_information_for_restaurants": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_cuisine_type_for_restaurants": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_current_day": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "system",
+      "source_trust": "own",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_day_calendar_events": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "calendar",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_dietary_restrictions_for_all_restaurants": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_draft_emails": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "email",
+      "source_trust": "own",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_file_by_id": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "file",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_flight_information": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_hotels_address": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_hotels_prices": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_iban": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "account",
+      "source_trust": "own",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_most_recent_transactions": {
+      "action": "list",
+      "effect": "read",
+      "domain": "finance",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_price_for_restaurants": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_rating_reviews_for_car_rental": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_rating_reviews_for_hotels": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_rating_reviews_for_restaurants": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_received_emails": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "email",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_restaurants_address": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "travel",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_scheduled_transactions": {
+      "action": "list",
+      "effect": "read",
+      "domain": "finance",
+      "source_trust": "own",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_sent_emails": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "email",
+      "source_trust": "own",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_unread_emails": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "email",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_user_info": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "account",
+      "source_trust": "own",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_user_information": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "account",
+      "source_trust": "own",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_users_in_channel": {
+      "action": "list",
+      "effect": "read",
+      "domain": "messaging",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "get_webpage": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "web",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "invite_user_to_slack": {
+      "action": "admin",
+      "effect": "write",
+      "domain": "messaging",
+      "source_trust": null,
+      "egress": true,
+      "destructive": false,
+      "mapped": true
+    },
+    "list_files": {
+      "action": "list",
+      "effect": "read",
+      "domain": "file",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "post_webpage": {
+      "action": "publish",
+      "effect": "write",
+      "domain": "web",
+      "source_trust": null,
+      "egress": true,
+      "destructive": false,
+      "mapped": true
+    },
+    "read_channel_messages": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "messaging",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "read_file": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "file",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "read_inbox": {
+      "action": "retrieve",
+      "effect": "read",
+      "domain": "messaging",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "remove_user_from_slack": {
+      "action": "admin",
+      "effect": "write",
+      "domain": "messaging",
+      "source_trust": null,
+      "egress": false,
+      "destructive": true,
+      "mapped": true
+    },
+    "reschedule_calendar_event": {
+      "action": "update",
+      "effect": "write",
+      "domain": "calendar",
+      "source_trust": null,
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "reserve_car_rental": {
+      "action": "reserve",
+      "effect": "write",
+      "domain": "travel",
+      "source_trust": null,
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "reserve_hotel": {
+      "action": "reserve",
+      "effect": "write",
+      "domain": "travel",
+      "source_trust": null,
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "reserve_restaurant": {
+      "action": "reserve",
+      "effect": "write",
+      "domain": "travel",
+      "source_trust": null,
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "schedule_transaction": {
+      "action": "transfer_value",
+      "effect": "write",
+      "domain": "finance",
+      "source_trust": null,
+      "egress": true,
+      "destructive": false,
+      "mapped": true
+    },
+    "search_calendar_events": {
+      "action": "search",
+      "effect": "read",
+      "domain": "calendar",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "search_contacts_by_email": {
+      "action": "search",
+      "effect": "read",
+      "domain": "contact",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "search_contacts_by_name": {
+      "action": "search",
+      "effect": "read",
+      "domain": "contact",
+      "source_trust": "third_party_structured",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "search_emails": {
+      "action": "search",
+      "effect": "read",
+      "domain": "email",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "search_files": {
+      "action": "search",
+      "effect": "read",
+      "domain": "file",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "search_files_by_filename": {
+      "action": "search",
+      "effect": "read",
+      "domain": "file",
+      "source_trust": "third_party_freetext",
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "send_channel_message": {
+      "action": "send_message",
+      "effect": "write",
+      "domain": "messaging",
+      "source_trust": null,
+      "egress": true,
+      "destructive": false,
+      "mapped": true
+    },
+    "send_direct_message": {
+      "action": "send_message",
+      "effect": "write",
+      "domain": "messaging",
+      "source_trust": null,
+      "egress": true,
+      "destructive": false,
+      "mapped": true
+    },
+    "send_email": {
+      "action": "send_message",
+      "effect": "write",
+      "domain": "email",
+      "source_trust": null,
+      "egress": true,
+      "destructive": false,
+      "mapped": true
+    },
+    "send_money": {
+      "action": "transfer_value",
+      "effect": "write",
+      "domain": "finance",
+      "source_trust": null,
+      "egress": true,
+      "destructive": false,
+      "mapped": true
+    },
+    "share_file": {
+      "action": "share",
+      "effect": "write",
+      "domain": "file",
+      "source_trust": null,
+      "egress": true,
+      "destructive": false,
+      "mapped": true
+    },
+    "update_password": {
+      "action": "admin",
+      "effect": "write",
+      "domain": "account",
+      "source_trust": null,
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    },
+    "update_scheduled_transaction": {
+      "action": "update",
+      "effect": "write",
+      "domain": "finance",
+      "source_trust": null,
+      "egress": true,
+      "destructive": false,
+      "mapped": true
+    },
+    "update_user_info": {
+      "action": "admin",
+      "effect": "write",
+      "domain": "account",
+      "source_trust": null,
+      "egress": false,
+      "destructive": false,
+      "mapped": true
+    }
+  },
+  "recipient_rules": {
+    "create_calendar_event": "participants"
+  },
+  "tool_signatures": {
+    "add_calendar_event_participants": {
+      "required": [
+        "event_id",
+        "participants"
+      ],
+      "optional": []
+    },
+    "add_user_to_channel": {
+      "required": [
+        "channel",
+        "user"
+      ],
+      "optional": []
+    },
+    "append_to_file": {
+      "required": [
+        "content",
+        "file_id"
+      ],
+      "optional": []
+    },
+    "cancel_calendar_event": {
+      "required": [
+        "event_id"
+      ],
+      "optional": []
+    },
+    "check_restaurant_opening_hours": {
+      "required": [
+        "restaurant_names"
+      ],
+      "optional": []
+    },
+    "create_calendar_event": {
+      "required": [
+        "end_time",
+        "start_time",
+        "title"
+      ],
+      "optional": [
+        "description",
+        "location",
+        "participants"
+      ]
+    },
+    "create_file": {
+      "required": [
+        "content",
+        "filename"
+      ],
+      "optional": []
+    },
+    "delete_email": {
+      "required": [
+        "email_id"
+      ],
+      "optional": []
+    },
+    "delete_file": {
+      "required": [
+        "file_id"
+      ],
+      "optional": []
+    },
+    "get_all_car_rental_companies_in_city": {
+      "required": [
+        "city"
+      ],
+      "optional": []
+    },
+    "get_all_hotels_in_city": {
+      "required": [
+        "city"
+      ],
+      "optional": []
+    },
+    "get_all_restaurants_in_city": {
+      "required": [
+        "city"
+      ],
+      "optional": []
+    },
+    "get_balance": {
+      "required": [],
+      "optional": []
+    },
+    "get_car_fuel_options": {
+      "required": [
+        "company_name"
+      ],
+      "optional": []
+    },
+    "get_car_price_per_day": {
+      "required": [
+        "company_name"
+      ],
+      "optional": []
+    },
+    "get_car_rental_address": {
+      "required": [
+        "company_name"
+      ],
+      "optional": []
+    },
+    "get_car_types_available": {
+      "required": [
+        "company_name"
+      ],
+      "optional": []
+    },
+    "get_channels": {
+      "required": [],
+      "optional": []
+    },
+    "get_contact_information_for_restaurants": {
+      "required": [
+        "restaurant_names"
+      ],
+      "optional": []
+    },
+    "get_cuisine_type_for_restaurants": {
+      "required": [
+        "restaurant_names"
+      ],
+      "optional": []
+    },
+    "get_current_day": {
+      "required": [],
+      "optional": []
+    },
+    "get_day_calendar_events": {
+      "required": [
+        "day"
+      ],
+      "optional": []
+    },
+    "get_dietary_restrictions_for_all_restaurants": {
+      "required": [
+        "restaurant_names"
+      ],
+      "optional": []
+    },
+    "get_draft_emails": {
+      "required": [],
+      "optional": []
+    },
+    "get_file_by_id": {
+      "required": [
+        "file_id"
+      ],
+      "optional": []
+    },
+    "get_flight_information": {
+      "required": [
+        "arrival_city",
+        "departure_city"
+      ],
+      "optional": []
+    },
+    "get_hotels_address": {
+      "required": [
+        "hotel_name"
+      ],
+      "optional": []
+    },
+    "get_hotels_prices": {
+      "required": [
+        "hotel_names"
+      ],
+      "optional": []
+    },
+    "get_iban": {
+      "required": [],
+      "optional": []
+    },
+    "get_most_recent_transactions": {
+      "required": [],
+      "optional": [
+        "n"
+      ]
+    },
+    "get_price_for_restaurants": {
+      "required": [
+        "restaurant_names"
+      ],
+      "optional": []
+    },
+    "get_rating_reviews_for_car_rental": {
+      "required": [
+        "company_name"
+      ],
+      "optional": []
+    },
+    "get_rating_reviews_for_hotels": {
+      "required": [
+        "hotel_names"
+      ],
+      "optional": []
+    },
+    "get_rating_reviews_for_restaurants": {
+      "required": [
+        "restaurant_names"
+      ],
+      "optional": []
+    },
+    "get_received_emails": {
+      "required": [],
+      "optional": []
+    },
+    "get_restaurants_address": {
+      "required": [
+        "restaurant_names"
+      ],
+      "optional": []
+    },
+    "get_scheduled_transactions": {
+      "required": [],
+      "optional": []
+    },
+    "get_sent_emails": {
+      "required": [],
+      "optional": []
+    },
+    "get_unread_emails": {
+      "required": [],
+      "optional": []
+    },
+    "get_user_info": {
+      "required": [],
+      "optional": []
+    },
+    "get_user_information": {
+      "required": [],
+      "optional": []
+    },
+    "get_users_in_channel": {
+      "required": [
+        "channel"
+      ],
+      "optional": []
+    },
+    "get_webpage": {
+      "required": [
+        "url"
+      ],
+      "optional": []
+    },
+    "invite_user_to_slack": {
+      "required": [
+        "user",
+        "user_email"
+      ],
+      "optional": []
+    },
+    "list_files": {
+      "required": [],
+      "optional": []
+    },
+    "post_webpage": {
+      "required": [
+        "content",
+        "url"
+      ],
+      "optional": []
+    },
+    "read_channel_messages": {
+      "required": [
+        "channel"
+      ],
+      "optional": []
+    },
+    "read_file": {
+      "required": [
+        "file_path"
+      ],
+      "optional": []
+    },
+    "read_inbox": {
+      "required": [
+        "user"
+      ],
+      "optional": []
+    },
+    "remove_user_from_slack": {
+      "required": [
+        "user"
+      ],
+      "optional": []
+    },
+    "reschedule_calendar_event": {
+      "required": [
+        "event_id",
+        "new_start_time"
+      ],
+      "optional": [
+        "new_end_time"
+      ]
+    },
+    "reserve_car_rental": {
+      "required": [
+        "company",
+        "end_time",
+        "start_time"
+      ],
+      "optional": []
+    },
+    "reserve_hotel": {
+      "required": [
+        "end_day",
+        "hotel",
+        "start_day"
+      ],
+      "optional": []
+    },
+    "reserve_restaurant": {
+      "required": [
+        "restaurant",
+        "start_time"
+      ],
+      "optional": []
+    },
+    "schedule_transaction": {
+      "required": [
+        "amount",
+        "date",
+        "recipient",
+        "recurring",
+        "subject"
+      ],
+      "optional": []
+    },
+    "search_calendar_events": {
+      "required": [
+        "query"
+      ],
+      "optional": [
+        "date"
+      ]
+    },
+    "search_contacts_by_email": {
+      "required": [
+        "query"
+      ],
+      "optional": []
+    },
+    "search_contacts_by_name": {
+      "required": [
+        "query"
+      ],
+      "optional": []
+    },
+    "search_emails": {
+      "required": [
+        "query"
+      ],
+      "optional": [
+        "sender"
+      ]
+    },
+    "search_files": {
+      "required": [
+        "query"
+      ],
+      "optional": []
+    },
+    "search_files_by_filename": {
+      "required": [
+        "filename"
+      ],
+      "optional": []
+    },
+    "send_channel_message": {
+      "required": [
+        "body",
+        "channel"
+      ],
+      "optional": []
+    },
+    "send_direct_message": {
+      "required": [
+        "body",
+        "recipient"
+      ],
+      "optional": []
+    },
+    "send_email": {
+      "required": [
+        "body",
+        "recipients",
+        "subject"
+      ],
+      "optional": [
+        "attachments",
+        "bcc",
+        "cc"
+      ]
+    },
+    "send_money": {
+      "required": [
+        "amount",
+        "date",
+        "recipient",
+        "subject"
+      ],
+      "optional": []
+    },
+    "share_file": {
+      "required": [
+        "email",
+        "file_id",
+        "permission"
+      ],
+      "optional": []
+    },
+    "update_password": {
+      "required": [
+        "password"
+      ],
+      "optional": []
+    },
+    "update_scheduled_transaction": {
+      "required": [
+        "id"
+      ],
+      "optional": [
+        "amount",
+        "date",
+        "recipient",
+        "recurring",
+        "subject"
+      ]
+    },
+    "update_user_info": {
+      "required": [],
+      "optional": [
+        "city",
+        "first_name",
+        "last_name",
+        "street"
+      ]
+    }
+  }
+}
