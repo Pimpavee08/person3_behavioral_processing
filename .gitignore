@@ -1,0 +1,14 @@
+# P1-only material: never commit
+P1_PRIVATE*/
+*P1ONLY*
+
+# Team input data
+trajectories_sanitized/
+trajectories_sanitized*.jsonl
+
+# 1,131-trajectory package: waits for P1 approval (see FILES_GUIDE.md)
+output_pii_1131_p3-1.2/
+
+# Python
+__pycache__/
+*.pyc

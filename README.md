@@ -2,25 +2,35 @@
 
 แปลง trajectory ของ Person 2 (ทั้งแบบ raw และแบบ blinded) ให้เป็น canonical structural trajectory แล้วสกัด structural features ตาม **Data Contract v0.2**
 
-**สถานะ (2026-10-10):**
-- Candidate set ของ P2 (1,158 blinded trajectories): feature schema `p3-features-1.2` (**FROZEN**)
-  - ตรวจ ID ผ่าน (1,158 ไม่ซ้ำ), error 0
-  - package: `output_candidate_p3-1.2/` zip ที่ส่ง: `../P3_to_P1_P4_candidate_v1.2.zip`
-  - 1.2 แก้บั๊กจากการรีวิวโค้ด (`n_retry_after_error` ค่าเปลี่ยนใน 9 trajectories) และเพิ่มความทนทาน
-  - ของเก่า (1.1) อยู่ใน `archive/`
-- Pilot v0.1 (54 runs): ส่งไปแล้วด้วย schema `p3-features-1.0` โค้ดเวอร์ชันนั้นอยู่ใน `archive/p3_code_1.0.0/`
-- Code `p3` 1.2.1 (refactor แผน A: ข้อมูลเหมือน 1.2.0 ทุก byte และเร็วขึ้นประมาณ 11%)
-- Unit test 49 ข้อผ่านทั้งหมด (Python 3.12 และ 3.14)
+**ไฟล์ไหนคืออะไร อันไหนใช้อยู่ ดูที่ [FILES_GUIDE.md](FILES_GUIDE.md)**
+
+**สถานะ (2026-10-30):**
+- ชุดทดลองปัจจุบัน: 1,131 blinded trajectories (IPI 873 + benign 258) feature schema `p3-features-1.2` (**FROZEN**)
+  - ตรวจ ID ผ่าน (1,131 ไม่ซ้ำ), error 0, ค่า missing/nonfinite 0
+  - package อยู่ในเครื่องที่ `output_pii_1131_p3-1.2/` ยังไม่ขึ้นรีโป เพราะรอ P1 อนุมัติ
+- Historical baseline: 1,158 blinded trajectories package: `output_candidate_p3-1.2/`
+- Pilot v0.1 (54 runs): schema `p3-features-1.0` โค้ดเวอร์ชันนั้นอยู่ใน `archive/p3_code_1.0.0/`
+- Code `p3` 1.2.1 และ unit test 49 ข้อผ่านทั้งหมด
 
 เอกสาร: [docs/feature_schema_v1.2.md](docs/feature_schema_v1.2.md), [docs/preprocessing_notes_v1.2.md](docs/preprocessing_notes_v1.2.md) (เอกสาร pilot: [PILOT_REPORT_P3.md](PILOT_REPORT_P3.md), [HANDOFF_P4.md](HANDOFF_P4.md))
 
-## วิธีรัน (candidate set)
+## วิธีรัน
 
 โฟลเดอร์ `--out` ต้องเป็นโฟลเดอร์ใหม่ โฟลเดอร์ว่าง หรือ output เดิมของเครื่องมือนี้ ถ้ามีไฟล์อื่นอยู่ เครื่องมือจะไม่ยอมเขียนทับ
+
+ชุด 1,131 (ปัจจุบัน):
+
+```bash
+python -m p3 --raw ../trajectories_sanitized/trajectories_sanitized.jsonl --out output_pii_1131_p3-1.2 --expected 1131
+```
+
+ชุด 1,158 (historical baseline):
 
 ```bash
 python -m p3 --raw ../P2_P3_candidate_package/trajectories_sanitized.jsonl --out output_candidate_p3-1.2 --expected 1158
 ```
+
+สร้างโฟลเดอร์และ zip ของชุด 1,158:
 
 ```bash
 python tools/build_handoff.py
@@ -57,7 +67,7 @@ python tools/make_mock_logs.py
 ```
 
 ข้อควรรู้:
-- Pipeline จะไม่ยอมรันถ้าโค้ดของ feature ไม่ตรงกับ `schema/feature_schema_p3-features-1.0.json`
+- Pipeline จะไม่ยอมรันถ้าโค้ดของ feature ไม่ตรงกับ `schema/feature_schema_p3-features-1.2.json`
 - ถ้าจะเปลี่ยน feature ให้เพิ่ม `FEATURE_SET_VERSION` ใน `p3/features.py` แล้ว freeze ใหม่ด้วย `python tools/freeze_schema.py --date YYYY-MM-DD` และแจ้งทีม
 - ถ้ามี raw หรือ manifest ใหม่ ให้ใช้โฟลเดอร์ `--out` ใหม่ทุกครั้ง
 
@@ -69,12 +79,13 @@ python tools/make_mock_logs.py
 | `p3/tool_taxonomy.py` | Normalized tool categories ของ tool ทั้ง 69 ตัว |
 | `p3/tool_signatures.py` | Signature ของ tool ที่ commit `a75aba76` ใช้ตรวจ argument ขาด/เกิน |
 | `p3/normalize.py` | Normalization และ `structural_view()` (ตัดข้อความดิบและค่า argument) |
-| `p3/features.py` | Primary 72 ตัว (จากโครงสร้างเท่านั้น) และ secondary 12 ตัว |
+| `p3/features.py` | Primary 77 ตัว (จากโครงสร้างเท่านั้น) และ secondary 12 ตัว |
 | `p3/schema.py`, `schema/` | Feature schema ที่ freeze แล้ว และตัวตรวจว่าโค้ดยังตรงกับ schema |
 | `p3/pipeline.py` | รวมทุกขั้น: อ่าน → ตรวจ id → ประมวลผลทีละ record → เขียน package |
 | `p3/validation.py`, `p3/reports.py`, `p3/common.py` | ตรวจ input, quality report และ feature summary, helper ที่ใช้ร่วมกัน |
 | `p3/leakage.py`, `p3/fsutil.py` | ตัวกัน leakage, การเขียนโฟลเดอร์ output แบบปลอดภัย |
-| `output_pilot_v0.1_p3-1.0/` | **Package ปัจจุบัน** |
+| `output_candidate_p3-1.2/` | Package ชุด 1,158 (historical baseline) |
+| `output_pilot_v0.1_p3-1.0/` | Package ของ pilot |
 | `archive/` | Package เวอร์ชันเก่า ห้ามส่งต่อ |
 | `mock/`, `output_mock/` | ข้อมูลสังเคราะห์ ใช้ทดสอบเท่านั้น |
 
@@ -82,11 +93,11 @@ python tools/make_mock_logs.py
 
 | ไฟล์ | หมายเหตุ |
 | --- | --- |
-| `features.csv` | `run_id` + primary features 72 ตัว |
+| `features.csv` | `trajectory_id` + primary features 77 ตัว |
 | `canonical_trajectories.jsonl` | Normalized structural trajectories ไม่มีข้อความดิบ |
-| `feature_schema.json`, `feature_schema_v1.0.md`, `feature_dictionary.csv` | Feature schema documentation (frozen) |
-| `preprocessing_metadata.json`, `preprocessing_notes.md` | Preprocessing metadata และ notes |
-| `run_index.csv` | ใช้แบ่งข้อมูลเท่านั้น ไม่มี label |
-| `features_extended.csv` | Secondary features (ข้อความและเวลา) |
+| `feature_schema.json`, `feature_schema_v1.2.md`, `feature_dictionary.csv` | Feature schema documentation (frozen) |
+| `preprocessing_metadata.json`, `preprocessing_notes_v1.2.md` | Preprocessing metadata และ notes |
+| `trajectory_index.csv` | Metadata ใช้แบ่งข้อมูลเท่านั้น ไม่มี label และห้ามใช้เป็น feature |
+| `features_extended.csv` | Secondary features (ข้อความและเวลา) มีเฉพาะข้อมูล raw |
 | `feature_summary.md`, `quality_report.md`, `quality_issues.csv` | ตรวจคุณภาพข้อมูล |
 | `checksums.sha256` | Checksum ของไฟล์ทั้งหมดใน package |
